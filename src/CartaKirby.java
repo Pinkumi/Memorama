@@ -1,13 +1,13 @@
 import javax.swing.*;
+import javax.sound.sampled.*;
 import java.awt.*;
-
+import java.io.File;
+import java.io.IOException;
 public class CartaKirby extends Carta {
     //subclase de la clase carta
 
     public CartaKirby(int numCarta) {
         super(numCarta);
-        setBackground(Color.PINK);
-        setOpaque(true);
 
     }
 
@@ -40,7 +40,16 @@ public class CartaKirby extends Carta {
                 break;
 
         }
+    }
 
+    @Override
+    public void accionEspecialEncontrado() {
+        ImageIcon iconoOriginal = (ImageIcon) iconLabel.getIcon();
+        ImageIcon gif = new ImageIcon("src/kirbys/kirbyYei.gif");
+        iconLabel.setIcon(gif);
+        Timer timer = new Timer(4000, e -> iconLabel.setIcon(iconoOriginal));
+        timer.setRepeats(false);
+        timer.start();
     }
 
     @Override
@@ -49,15 +58,6 @@ public class CartaKirby extends Carta {
         ImageIcon gif = new ImageIcon("src/kirbys/kirbyCaida.gif");
         iconLabel.setIcon(gif);
         Timer timer = new Timer(1300, e -> iconLabel.setIcon(iconoOriginal));
-        timer.setRepeats(false);
-        timer.start();
-    }
-    @Override
-    public void accionEspecialEncontrado() {
-        ImageIcon iconoOriginal = (ImageIcon) iconLabel.getIcon();
-        ImageIcon gif = new ImageIcon("src/kirbys/kirbyYei.gif");
-        iconLabel.setIcon(gif);
-        Timer timer = new Timer(4000, e -> iconLabel.setIcon(iconoOriginal));
         timer.setRepeats(false);
         timer.start();
     }
