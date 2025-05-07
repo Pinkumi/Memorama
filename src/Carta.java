@@ -10,27 +10,31 @@ public abstract class Carta extends JLabel{
         public JButton voltearBoton = new JButton("Voltear");
         //protected JLabel fondoCarta = new JLabel();
         protected JLabel iconLabel = new JLabel();
+        protected int width;
+        protected int height;
 
-        public Carta(int numCarta) {
+        public Carta(int numCarta,int width, int height) {
             this.numCarta = numCarta;
             this.isVisible = false;
+            this.width = width;
+            this.height = height;
 
 
-            Image imagenEscalada = new ImageIcon("src/images/carta.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH);
+            Image imagenEscalada = new ImageIcon("src/images/carta.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
             icon = new ImageIcon(imagenEscalada);
 
             setLayout(null);
-            setSize(162, 250);
+            setSize(width+20, height+50);
             setLocation(0, 0);
 
-            iconLabel.setSize(149, 180);
-            iconLabel.setLocation(6, 10);
+            iconLabel.setSize(width, height);
+            iconLabel.setLocation(10, 10);
             iconLabel.setIcon(icon);
 
-            voltearBoton.setSize(149, 40);
-            voltearBoton.setLocation(6, 200);
+            voltearBoton.setSize(width, 20);
+            voltearBoton.setLocation(10, height+20);
             voltearBoton.setFocusable(false);
-            voltearBoton.addActionListener(a -> voltear());
+            //voltearBoton.addActionListener(a -> voltear());
 
             add(iconLabel);
             add(voltearBoton);
@@ -39,10 +43,20 @@ public abstract class Carta extends JLabel{
             setOpaque(true);
             definirIcon(numCarta);
         }
+        public int getNumCarta() {
+            return numCarta;
+        }
 
         public void voltear(){// Para mostrarla
-            isVisible = !isVisible;
+            isVisible = true;
             actualizarImagen();
+            voltearBoton.setEnabled(false);
+
+        }
+        public void ocultar(){
+            isVisible = false;
+            actualizarImagen();
+            voltearBoton.setEnabled(true);
 
         }
         public boolean esIgual(int nCarta){
@@ -51,16 +65,22 @@ public abstract class Carta extends JLabel{
 
     public void actualizarImagen() {
         if(!isVisible){
-            Image imagenEscalada = new ImageIcon("src/images/carta.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH);
+            Image imagenEscalada = new ImageIcon("src/images/carta.png").getImage().getScaledInstance(width ,height, Image.SCALE_SMOOTH);
             icon = new ImageIcon(imagenEscalada);
         }else{
             definirIcon(numCarta);
+
+
         }
         iconLabel.setIcon(icon);
     }
-
+        public ImageIcon obtenerIcon(){
+            return this.icon;
+        }
+        public abstract ImageIcon obtenerPortada();
         public abstract void definirIcon(int numCarta);
         public abstract void accionEspecialEncontrado();
         public abstract void accionEspecialIncorrecta();
+
 
 }

@@ -5,37 +5,40 @@ import java.io.File;
 import java.io.IOException;
 public class CartaPayaso extends Carta {
     //subclase de la clase carta
-    public CartaPayaso(int numCarta) {
-        super(numCarta);
+    public CartaPayaso(int numCarta, int width, int height) {
+        super(numCarta, width, height);
 
     }
-
+    @Override
+    public ImageIcon obtenerPortada() {
+        return new ImageIcon("src/payasos/portada.png");
+    }
     @Override
     public void definirIcon(int numCarta) {
         switch (numCarta) {
             case 1:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso1.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso1.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 2:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso2.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso2.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 3:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso3.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso3.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 4:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso4.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso4.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 5:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso5.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso5.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 6:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso6.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso6.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 7:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso7.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso7.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
             case 8:
-                icon = new ImageIcon((new ImageIcon("src/payasos/payaso8.png").getImage().getScaledInstance(149, 180, Image.SCALE_SMOOTH)));
+                icon = new ImageIcon((new ImageIcon("src/payasos/payaso8.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH)));
                 break;
 
         }
