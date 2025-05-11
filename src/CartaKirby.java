@@ -12,7 +12,7 @@ public class CartaKirby extends Carta {
     }
 
     @Override
-    public ImageIcon obtenerPortada() {
+    public ImageIcon obtenerPortada() { //regresa la portada de las cartas de este tipo
         return new ImageIcon("src/kirbys/portada.png");
     }
 
@@ -48,7 +48,7 @@ public class CartaKirby extends Carta {
     }
 
     @Override
-    public void accionEspecialEncontrado() {
+    public void accionEspecialEncontrado() { //muestra un gif de kirby cayendo
         ImageIcon iconoOriginal = (ImageIcon) iconLabel.getIcon();
         ImageIcon gif = new ImageIcon("src/kirbys/kirbyYei.gif");
         iconLabel.setIcon(gif);
@@ -58,7 +58,7 @@ public class CartaKirby extends Carta {
     }
 
     @Override
-    public void accionEspecialIncorrecta() {
+    public void accionEspecialIncorrecta() { //muestra un video de kirby bailando
         Image imagenEscalada = new ImageIcon("src/images/carta.png").getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         ImageIcon iconoOriginal = new ImageIcon(imagenEscalada);
         ImageIcon gif = new ImageIcon("src/kirbys/kirbyCaida.gif");

@@ -42,7 +42,7 @@ public class CartaPerro extends Carta {
 
     }
     @Override
-    public void accionEspecialIncorrecta() {
+    public void accionEspecialIncorrecta() { // suena audio de perro llorando
         try {
             File sonido = new File("src/perros/triste.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(sonido);
@@ -58,7 +58,7 @@ public class CartaPerro extends Carta {
         return new ImageIcon("src/perros/portada.png");
     }
     @Override
-    public void accionEspecialEncontrado() {
+    public void accionEspecialEncontrado() { // suena un ladrido
         try {
             File sonido = new File("src/perros/ladrar.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(sonido);

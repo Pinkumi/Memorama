@@ -24,7 +24,7 @@ public class MemoramaFacil extends Memorama{
         panelTemporizador.add(labelCartaImagen);
     }
     @Override
-    public void generarTablero() {
+    public void generarTablero() { //genera un tablero 8x2
         int y = 190;
         int x = 15;
         int cartaPos = 0;
@@ -36,40 +36,13 @@ public class MemoramaFacil extends Memorama{
                 x += carta.getWidth()+5;
                 cartaPos++;
             }
-            y += cartas.getFirst().getHeight()+50; // o usa carta.getHeight()
+            y += cartas.getFirst().getHeight()+50;
             x = 15;
         }
     }
 
     @Override
-    public void iniciarTurno(){
-        ArrayList<Integer> cartasVolteadasPos = encontrarCartasVolteadas();
-        if(cartasVolteadasPos.size() ==2){
-            if(cartas.get(cartasVolteadasPos.getFirst()).getNumCarta() == cartas.get(cartasVolteadasPos.getLast()).getNumCarta()){
-                jugadores.get(jugadorEnTurno).addScore(1);
-                paresMostrados++;
-                cartas.remove(cartasVolteadasPos.getFirst());
-                cartas.remove(cartasVolteadasPos.getLast());
-            }else {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                cartas.get(cartasVolteadasPos.getFirst()).ocultar();
-                cartas.get(cartasVolteadasPos.getLast()).ocultar();
-            }
-            cartasVolteadasPos.clear();
-            if (jugadorEnTurno == jugadores.size()-1) {
-                jugadorEnTurno = 0;
-            } else {
-                jugadorEnTurno++;
-            }
-            actualizarInformacion();
-        }
-    }
-    @Override
-    public void verificarEmparejamiento() {
+    public void verificarEmparejamiento() { //verifica que haya par
         Carta c1 = cartasVolteadas.get(0);
         Carta c2 = cartasVolteadas.get(1);
         cartasVolteadas.clear();

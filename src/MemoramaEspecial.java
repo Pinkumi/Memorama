@@ -14,6 +14,7 @@ public class MemoramaEspecial extends Memorama{
 
     public MemoramaEspecial(int cartaTipo, int cantJugadores){
         super(cartaTipo, cantJugadores);
+        //agrega otros paneles para el temporizador y la carta que dara mas puntos
         triplesMostrados = 0;
         JLabel tituloTemporizador = new JLabel("      Temporizador:       ");
         tituloTemporizador.setFont(new Font("MV Boli",Font.PLAIN,30));
@@ -35,18 +36,12 @@ public class MemoramaEspecial extends Memorama{
         generarTablero();
         agregarEfectoBotones();
         cartaEspecial = encontrarCartaEspecial();
-
         Image image = cartaEspecial.obtenerIcon().getImage().getScaledInstance(90,111, Image.SCALE_SMOOTH);
-      //  iconCartaEspecial.setImage(image);
         JLabel labelCartaEspecial = new JLabel(new ImageIcon(image));
-        //labelCartaEspecial.setIcon(iconCartaEspecial);
-
         labelCartaEspecial.setSize(80,111);
         labelCartaEspecial.setLocation(1900,0);
-
         panelCarta.add(labelCartaEspecial);
         frameJuego.add(panelCarta);
-
         JLabel labelCarta = new JLabel(cartaEspecial.obtenerIcon());
         JLabel mensaje = new JLabel("Carta Especial:");
         mensaje.setHorizontalAlignment(JLabel.CENTER);
@@ -54,20 +49,17 @@ public class MemoramaEspecial extends Memorama{
         panel.add(mensaje, BorderLayout.NORTH);
         panel.add(labelCarta, BorderLayout.CENTER);
         JOptionPane.showMessageDialog(null, panel, "Carta especial", JOptionPane.INFORMATION_MESSAGE);
-
-        labelTiempoRestante = new JLabel("8");
+        labelTiempoRestante = new JLabel("10");
         labelTiempoRestante.setFont(new Font("MV Boli", Font.BOLD, 30));
         labelTiempoRestante.setHorizontalAlignment(JLabel.CENTER);
         panelTemporizador.add(labelTiempoRestante);
-
         iniciarTemporizador();
-
     }
-    public void iniciarTemporizador() {
+    public void iniciarTemporizador() { // inicia el temporizador para seleccionar cartas o pasa de turno
         if (temporizadorTurno != null && temporizadorTurno.isRunning()) {
             temporizadorTurno.stop();
         }
-        segundosRestantes = 8;
+        segundosRestantes = 10;
         labelTiempoRestante.setText(String.valueOf(segundosRestantes));
         temporizadorTurno = new Timer(1000, e -> {
             segundosRestantes--;
@@ -84,24 +76,21 @@ public class MemoramaEspecial extends Memorama{
                 } else {
                     jugadorEnTurno++;
                 }
-                System.out.println("Tiempo finado, el jugador pierde 1 punto");
                 cartasVolteadas.clear();
-
                 actualizarInformacion();
                 iniciarTemporizador();
             }
         });
         temporizadorTurno.start();
     }
-    public Carta encontrarCartaEspecial(){
+    public Carta encontrarCartaEspecial(){ //toma una carta random para asignarla a la carta especial
         Carta cartaEspecial;
         Random rnd = new Random(System.currentTimeMillis());
         int numRand = rnd.nextInt(cartas.size()-1);
         cartaEspecial = cartas.get(numRand);
-
         return cartaEspecial;
     }
-    public void llenarCartas(int cartaTipo){
+    public void llenarCartas(int cartaTipo){ // agrega 3 cartas de cada id
         switch (cartaTipo){
             case 1:
                 for(int i = 1; i <= CARTAS_SIZE; i++){
@@ -130,7 +119,7 @@ public class MemoramaEspecial extends Memorama{
     }
 
     @Override
-    public void generarTablero(){
+    public void generarTablero(){ // genera un tablero 8x3
         int y = 130;
         int x = 33;
         int cartaPos = 0;
@@ -146,20 +135,14 @@ public class MemoramaEspecial extends Memorama{
             x = 33;
         }
     }
-    public void registrarCartaVolteada(Carta carta) {
-        System.out.println("la carta se ha registrado");
+    public void registrarCartaVolteada(Carta carta) { //lo mismo que la de la clase padre pero para 3 iguales
         cartasVolteadas.add(carta);
         if (cartasVolteadas.size() == 3) {
             verificarEmparejamiento();
         }
     }
-
     @Override
-    public void iniciarTurno(){
-        System.out.println("Iniciando Turno");
-    }
-    @Override
-    public void verificarEmparejamiento(){
+    public void verificarEmparejamiento(){ //revisa que sean 3 iguales
         Carta c1 = cartasVolteadas.get(0);
         Carta c2 = cartasVolteadas.get(1);
         Carta c3 = cartasVolteadas.get(2);

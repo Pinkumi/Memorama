@@ -45,7 +45,7 @@ public class CartaPayaso extends Carta {
 
     }
     @Override
-    public void accionEspecialIncorrecta() {
+    public void accionEspecialIncorrecta() { //suena un audio de payaso
         try {
             File sonido = new File("src/payasos/triste.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(sonido);
@@ -57,15 +57,16 @@ public class CartaPayaso extends Carta {
         }
     }
     @Override
-    public void accionEspecialEncontrado() {
+    public void accionEspecialEncontrado() { // muestra un cambio de colores en el fondo de la carta
         Color[] colores = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.PINK};
-        int duracionParpadeo = 1500; // milisegundos
-        int intervalo = 150; // milisegundos entre cambios de color
-        int[] contador = {0}; // para contar los parpadeos
-
-        Timer timer = new Timer(intervalo, null);
-        timer.addActionListener(e -> { setBackground(colores[contador[0] % colores.length]); contador[0]++; if (contador[0] * intervalo >= duracionParpadeo) { timer.stop(); setBackground(Color.WHITE); } });
-        setOpaque(true); // asegurarse de que el fondo sea visible
+        int[] contador = {0}; //cuando se ha mostrado cada color
+        Timer timer = new Timer(150, null);
+        timer.addActionListener(e->{setBackground(colores[contador[0]%colores.length]);
+            contador[0]++;
+            if (contador[0] * 150 >= 1500) {
+                timer.stop(); setBackground(Color.WHITE); }
+        });
+        setOpaque(true);
         timer.start();
     }
 }

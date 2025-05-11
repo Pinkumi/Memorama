@@ -4,11 +4,8 @@ import java.util.Set;
 import java.util.Vector;
 
 public class Jugador {
-
-    public HashMap<Character,Integer> letras;
     private int puntos;
     private int nJugador;
-    // constructor
     Jugador(int nJugador) {
         this.nJugador = nJugador;
         puntos = 0;
@@ -17,7 +14,6 @@ public class Jugador {
     {
         puntos += nPuntos;
     }
-
     public Integer getScore()
     {
         return puntos;
@@ -26,9 +22,4 @@ public class Jugador {
     {
         return  "Jugador No."+nJugador +" - "+ puntos;
     }
-    public int getNumeroJugador() {
-        return nJugador;
-    }
-
-
 }

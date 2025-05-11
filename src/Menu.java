@@ -6,20 +6,18 @@ import java.awt.event.ActionListener;
 public class Menu {
     private static Memorama m;
     public static void main(String[] args) {
-
+        //crea el menu donde se podra seleccionar el tipo de carta, cuantos jugadores y su dificultad
 
         JFrame frame = new JFrame("Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 500);
         frame.setLayout(null);
         frame.getContentPane().setBackground( Color.WHITE );
-
         frame.setLocationRelativeTo(null);
         JLabel labelT = new JLabel();
         ImageIcon titulo = new ImageIcon("src/images/titulo.png");
         labelT.setIcon(titulo);
         labelT.setBounds((700-500)/2, 0, 500, 200);
-
         JComboBox<String> opcionCarta = new JComboBox<String>();
         opcionCarta.addItem("Cartas Kirby ⭐");
         opcionCarta.addItem("Cartas Payaso 🃏");
@@ -27,7 +25,6 @@ public class Menu {
         opcionCarta.setBounds(100, 350, 120, 30);
         opcionCarta.setBackground(Color.lightGray);
         opcionCarta.setForeground(Color.BLACK);
-
         JComboBox<String> opcionCantJugadores = new JComboBox<String>();
         opcionCantJugadores.addItem("2 👨");
         opcionCantJugadores.addItem("3 👨");
@@ -35,15 +32,12 @@ public class Menu {
         opcionCantJugadores.setBounds(320, 350, 50, 30);
         opcionCantJugadores.setBackground(Color.lightGray);
         opcionCantJugadores.setForeground(Color.BLACK);
-
         JComboBox<String> opcionDificultad = new JComboBox<String>();
         opcionDificultad.addItem("Normal 👌");
         opcionDificultad.addItem("Dificil 👾");
         opcionDificultad.setBounds(470, 350, 120, 30);
         opcionDificultad.setBackground(Color.lightGray);
         opcionDificultad.setForeground(Color.BLACK);
-
-
         ImageIcon play = new ImageIcon("src/images/play.png");
         JButton botonPlay = new JButton();
         botonPlay.setIcon(play);
@@ -66,7 +60,5 @@ public class Menu {
         frame.add(opcionCarta);
         frame.add(labelT);
         frame.setVisible(true);
-
-
     }
 }
